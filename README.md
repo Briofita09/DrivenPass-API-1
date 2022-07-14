@@ -89,5 +89,5 @@ npm install
 
 Finalizado o processo, é só inicializar o servidor
 ```
-npm start
+npm run dev
 ```
