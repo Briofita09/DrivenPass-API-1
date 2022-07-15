@@ -5,12 +5,17 @@
   "type": "module",
   "main": "dist/index.js",
   "scripts": {
+    "start": "node dist/server.js",
+    "ts:start": "ts-node src/server.ts",
+    "build": "tsc",
+    "dev": "nodemon src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "Guilherme Jankowiak Silva",
   "license": "ISC",
   "dependencies": {
+   "@prisma/client": "^4.0.0",
     "bcrypt": "^5.0.1",
     "chalk": "^5.0.1",
     "cors": "^2.8.5",
