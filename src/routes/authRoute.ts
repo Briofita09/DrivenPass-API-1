@@ -5,7 +5,7 @@ import { signIn, signUp } from "../schemas/authSchema.js";
 
 const authRoute = Router();
 
-//authRoute.post("/sign-in", authController);
+
 authRoute.post("/sign-in", validateSchema(signIn), authController.signIn);
 authRoute.post("/sign-up", validateSchema(signUp), authController.signUp);
 
