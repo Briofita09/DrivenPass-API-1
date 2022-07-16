@@ -11,7 +11,8 @@ credentialsRoute.use(tokenValidation);
 credentialsRoute.post("/credential", validateSchema(credentialSchema),
   credentialsController.create
 );
-// credentialsRoute.get("/credential/?id", credentialsController);
-// credentialsRoute.delete("/credential/:id", credentialsController);
+
+credentialsRoute.get("/credential", credentialsController.get);
+credentialsRoute.delete("/credential/:id", credentialsController.remove);
 
 export default credentialsRoute;
