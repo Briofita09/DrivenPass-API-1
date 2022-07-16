@@ -73,7 +73,7 @@ POST /card/create
 
 ## 🏁 Rodando a aplicação
 
-Este projeto foi inicializado com o [Create React App](https://github.com/facebook/create-react-app), então certifique-se que voce tem a ultima versão estável do [Node.js](https://nodejs.org/en/download/) e [npm](https://www.npmjs.com/) rodando localmente.
+Para rodar este projeto, certifique-se que você tem a ultima versão estável do [Node.js](https://nodejs.org/en/download/) e [npm](https://www.npmjs.com/) rodando localmente.
 
 Primeiro, faça o clone desse repositório na sua maquina:
 
