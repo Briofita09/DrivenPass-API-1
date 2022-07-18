@@ -1,41 +1,45 @@
-[
-    {
-      "_id": "206179c1-4d8e-4217-812b-afdb2f2b3a16",
-      "name": "driven-pass",
-      "default": true,
-      "sortNum": 10000,
-      "created": "2022-07-15T18:15:09.089Z",
-      "modified": "2022-07-15T20:00:33.496Z",
-      "data": [
+{
+    "client": "Thunder Client",
+    "environmentName": "driven-pass",
+    "dateExported": "2022-07-18T19:36:14.427Z",
+    "version": "1.0",
+    "variables": [
         {
-          "name": "apiUrl",
-          "value": "http://localhost:5000"
+            "name": "apiUrl",
+            "value": "http://localhost:6002"
         },
         {
-          "name": "apiUrlL",
-          "value": "https://valex-cards.herokuapp.com"
+            "name": "apiUrlL",
+            "value": "https://valex-cards.herokuapp.com"
         },
         {
-          "name": "email",
-          "value": "Feeney.84cc9ee0033d@apple.com"
+            "name": "email",
+            "value": "Fisher.e69010c02e01@gmail.com"
         },
         {
-          "name": "password",
-          "value": "379287379287"
+            "name": "password",
+            "value": "112919112919"
         },
         {
-          "name": "token",
-          "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NiwiaWF0IjoxNjU3OTEwMzc4LCJleHAiOjE2NTc5OTY3NzgsInN1YiI6IjYifQ.1Pmp7kNkt6pWbp7iVD-ekxtnnxdSA2npsgAe3GTS21E"
+            "name": "token",
+            "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNjU4MTcyMzMzLCJleHAiOjE2NTgyNTg3MzMsInN1YiI6IjEifQ.HbjB1HtoQMARCDvqfY8IJTKtdVkxPotK3N9Q4O0eeac"
         },
         {
-          "name": "id",
-          "value": "1"
+            "name": "id",
+            "value": "1"
         },
         {
-          "name": "lable",
-          "value": "Fisher 5b9fbe574289"
+            "name": "lable",
+            "value": "Boyle baa349754ce2"
+        },
+        {
+            "name": "number",
+            "value": "9317931793174"
+        },
+        {
+            "name": "cvv",
+            "value": "447"
         }
-      ],
-      "envFile": "../../projeto19-drivenpass/.env"
-    }
-  ]
+    ],
+    "envFile": "../../projeto19-drivenpass/.env"
+}
