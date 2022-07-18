@@ -16,6 +16,7 @@ model User {
   SecureNotes SecureNote[]
   Cards       Card[]
   WiFi        WiFi[]
+  @@map("users")
 }
 
 model Credential {
@@ -26,6 +27,7 @@ model Credential {
   password String
   userId   Int
   user     User   @relation(fields: [userId], references: [id])
+  @@map("credentials")
 }
 
 model SecureNote {
@@ -34,6 +36,7 @@ model SecureNote {
   bodyNote String @db.VarChar(1000)
   userId   Int
   user     User   @relation(fields: [userId], references: [id])
+  @@map("secureNotes")
 }
 
 enum CardTypes {
@@ -44,16 +47,17 @@ enum CardTypes {
 
 model Card {
   id             Int       @id @default(autoincrement())
-  number         String
+  number         String    
   holderName     String
   secureCode     String
   expirationDate String
   isVirtual      Boolean   @default(false)
-  password       String?
+  password       String
   type           CardTypes
-  label          String
+  lable          String
   userId         Int
   user           User      @relation(fields: [userId], references: [id])
+  @@map("cards")
 }
 
 model WiFi {
@@ -63,4 +67,5 @@ model WiFi {
   lable    String
   userId   Int
   user     User   @relation(fields: [userId], references: [id])
+  @@map("wiFi")
 }
