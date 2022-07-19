@@ -63,7 +63,7 @@
 
 ***
 
-## ✅ Autenticação
+## ✅ Auth
 ### &nbsp; ‣ &nbsp; Register
 #### &nbsp; &nbsp; POST _`/sign-up`_
 
@@ -86,6 +86,346 @@
 }
 ```
 
+## ✅ Credentials
+### &nbsp; ‣ &nbsp; Create a credential
+#### &nbsp; &nbsp; POST _`/credential`_
+
+##### &nbsp; &nbsp; Body
+```json
+{
+  "label": "My card",
+  "userName": "PAULO U LAGO",
+  "url": "http://someurl.com",
+  "password": "1234"
+}
+```
+
+##### &nbsp; &nbsp; Header
+```json
+{
+  "Authorization": "Bearer ${token}"
+}
+```
+
+
+### &nbsp; ‣ &nbsp; Search all credentials
+#### &nbsp; &nbsp; GET _`/credential`_
+
+
+##### &nbsp; &nbsp; Header
+```json
+{
+  "Authorization": "Bearer ${token}"
+}
+```
+
+#### &nbsp; Response:
+```json
+[
+  {
+    "id": 2,
+    "label": "Boyle baa349754ce2",
+    "url": "https://sites.com/08337082-31ac-4e28-8a9c-b02c1aeb1c15",
+    "userName": "Paulo Santos",
+    "password": "112919112919",
+    "userId": 1
+  }
+]
+```
+
+
+### &nbsp; ‣ &nbsp; Search a credential
+#### &nbsp; &nbsp; GET _`/credential?id=1`_
+
+
+##### &nbsp; &nbsp; Header
+```json
+{
+  "Authorization": "Bearer ${token}"
+}
+```
+
+#### &nbsp; Response:
+```json
+{
+    "id": 2,
+    "label": "Boyle baa349754ce2",
+    "url": "https://sites.com/08337082-31ac-4e28-8a9c-b02c1aeb1c15",
+    "userName": "Paulo Santos",
+    "password": "112919112919",
+    "userId": 1
+}
+```
+
+### &nbsp; ‣ &nbsp; Delete a credential
+#### &nbsp; &nbsp; DELETE _`/credential/:id`_
+
+##### &nbsp; &nbsp; Header
+```json
+{
+  "Authorization": "Bearer ${token}"
+}
+```
+
+#### &nbsp; Response:
+```json
+204
+```
+
+## ✅ Secure notes
+### &nbsp; ‣ &nbsp; Create a secure note
+#### &nbsp; &nbsp; POST _`/secure-note`_
+
+##### &nbsp; &nbsp; Body
+```json
+{
+  "title": "Boyle baa349754ce2",
+  "bodyNote": "Cooper 8838fd663d78 Cooper 8838fd663d78 Cooper 8838fd663d78 Cooper"
+}
+```
+
+##### &nbsp; &nbsp; Header
+```json
+{
+  "Authorization": "Bearer ${token}"
+}
+```
+
+### &nbsp; ‣ &nbsp; Search all secure-notes
+#### &nbsp; &nbsp; GET _`/secure-note`_
+
+##### &nbsp; &nbsp; Header
+```json
+{
+  "Authorization": "Bearer ${token}"
+}
+```
+
+#### &nbsp; Response:
+```json
+[
+  {
+    "id": 2,
+    "title": "Boyle baa349754ce2",
+    "bodyNote": "Cooper 8838fd663d78 Cooper 8838fd663d78 Cooper 8838fd663d78  Cooper 8838fd663d78",
+    "userId": 1
+  }
+]
+```
+
+
+### &nbsp; ‣ &nbsp; Search a secure-note
+#### &nbsp; &nbsp; GET _`/secure-note?id=1`_
+
+##### &nbsp; &nbsp; Header
+```json
+{
+  "Authorization": "Bearer ${token}"
+}
+```
+
+#### &nbsp; Response:
+```json
+{
+  "id": 2,
+  "title": "Boyle baa349754ce2",
+  "bodyNote": "Cooper 8838fd663d78 Cooper 8838fd663d78 Cooper 8838fd663d78 Cooper 8838fd663d78 Cooper 8838fd663d78",
+  "userId": 1
+}
+```
+
+### &nbsp; ‣ &nbsp; Delete a secure note
+#### &nbsp; &nbsp; DELETE _`/secure-note/:id`_
+
+
+##### &nbsp; &nbsp; Header
+```json
+{
+  "Authorization": "Bearer ${token}"
+}
+```
+
+#### &nbsp; Response:
+```json
+204
+```
+
+## ✅ Cards
+### &nbsp; ‣ &nbsp; Create a card
+#### &nbsp; &nbsp; POST _`/card`_
+
+##### &nbsp; &nbsp; Body
+```json
+{
+    "number": "9317931793174",
+    "holderName": "Joanna B Pinheiro",
+    "secureCode": "837",
+    "expirationDate": "10/49",
+    "isVirtual": true,
+    "password": "644850",
+    "type": "both",
+    "lable": "Boyle baa349754ce2"
+  }
+```
+
+##### &nbsp; &nbsp; Header
+```json
+{
+  "Authorization": "Bearer ${token}"
+}
+```
+
+
+### &nbsp; ‣ &nbsp; Search all cards
+#### &nbsp; &nbsp; GET _`/card`_
+
+
+##### &nbsp; &nbsp; Header
+```json
+{
+  "Authorization": "Bearer ${token}"
+}
+```
+
+#### &nbsp; Response:
+```json
+[
+  {
+    "id": 2,
+    "number": "9317931793174",
+    "holderName": "Joanna B Pinheiro",
+    "secureCode": "837",
+    "expirationDate": "10/49",
+    "isVirtual": true,
+    "password": "644850",
+    "type": "both",
+    "userId": 1,
+    "lable": "Boyle baa349754ce2"
+  }
+]
+```
+
+### &nbsp; ‣ &nbsp; Search a card
+#### &nbsp; &nbsp; GET _`/card?id=1`_
+
+##### &nbsp; &nbsp; Header
+```json
+{
+  "Authorization": "Bearer ${token}"
+}
+```
+
+#### &nbsp; Response:
+```json
+{
+  "id": 2,
+  "number": "9317931793174",
+  "holderName": "Joanna B Pinheiro",
+  "secureCode": "837",
+  "expirationDate": "10/49",
+  "isVirtual": true,
+  "password": "644850",
+  "type": "both",
+  "userId": 1,
+  "lable": "Boyle baa349754ce2"
+}
+```
+
+### &nbsp; ‣ &nbsp; Delete a card
+#### &nbsp; &nbsp; DELETE _`/card/:id`_
+
+##### &nbsp; &nbsp; Header
+```json
+{
+  "Authorization": "Bearer ${token}"
+}
+```
+
+#### &nbsp; Response:
+```json
+204
+```
+
+## ✅ Wifis
+### &nbsp; ‣ &nbsp; Create a wifi
+#### &nbsp; &nbsp; POST _`/wi-fi`_
+
+##### &nbsp; &nbsp; Body
+```json
+{
+  "name": "Conn ec76c754426e",
+  "password": "233534",
+  "lable": "Boyle baa349754ce2"
+}
+```
+
+##### &nbsp; &nbsp; Header
+```json
+{
+  "Authorization": "Bearer ${token}"
+}
+```
+
+### &nbsp; ‣ &nbsp; Search all wi-fi's
+#### &nbsp; &nbsp; GET _`/wi-fi`_
+
+##### &nbsp; &nbsp; Header
+```json
+{
+  "Authorization": "Bearer ${token}"
+}
+```
+
+#### &nbsp; Response:
+```json
+[
+  {
+    "id": 3,
+    "name": "Conn ec76c754426e",
+    "password": "233534",
+    "lable": "Boyle baa349754ce2",
+    "userId": 1
+  }
+]
+```
+
+### &nbsp; ‣ &nbsp; Search a wi-fi
+#### &nbsp; &nbsp; GET _`/wi-fi?id=1`_
+
+##### &nbsp; &nbsp; Header
+```json
+{
+  "Authorization": "Bearer ${token}"
+}
+```
+
+#### &nbsp; Response:
+```json
+{
+  "id": 3,
+  "name": "Conn ec76c754426e",
+  "password": "233534",
+  "lable": "Boyle baa349754ce2",
+  "userId": 1
+}
+```
+
+### &nbsp; ‣ &nbsp; Delete a wi-fi
+#### &nbsp; &nbsp; DELETE _`/wi-fi/:id`_
+
+##### &nbsp; &nbsp; Header
+```json
+{
+  "Authorization": "Bearer ${token}"
+}
+```
+
+#### &nbsp; Response:
+```json
+204
+```
+
+---
 ***
 
 ## 🏁 Rodando a aplicação
