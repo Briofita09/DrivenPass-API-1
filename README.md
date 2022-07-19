@@ -65,7 +65,7 @@
 
 ## 🏁 Rodando a aplicação
 
-Para rodar este projeto, certifique-se que você tem a ultima versão estável do [Node.js](https://nodejs.org/en/download/) e [npm](https://www.npmjs.com/) rodando localmente.
+Para rodar este projeto, certifique-se de importar o código e colocar na sua máquina com os seguintes comandos: 
 
 ```bash
 # Install all dependencies
@@ -81,7 +81,28 @@ $ npx prisma migrate dev
 # Start the server
 $ npm start
 ```
-### You can still preview the data in the database easily using the command:
-```bash
-$ npx prisma studio
+
+***
+
+## ✅ Autenticação
+### &nbsp; ‣ &nbsp; Register
+#### &nbsp; &nbsp; POST _`/sign-up`_
+
+##### &nbsp; &nbsp; Body
+```json
+{
+  "email": "email@gmail.com",
+  "password": "1234"
+}
+```
+
+### &nbsp; ‣ &nbsp; Login
+#### &nbsp; &nbsp; POST _`/sign-in`_
+
+##### &nbsp; &nbsp; Body
+```json
+{
+  "email": "email@gmail.com",
+  "password": "1234"
+}
 ```
