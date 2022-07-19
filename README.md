@@ -18,56 +18,48 @@
 
 ## 💻	 Tecnologias e Conceitos
 
-- APIs
-- SQL
+- PostgreSQL
+- Prisma
 - Node.js
 - TypeScript
+- JWT
+- Express.js
 
 ***
 
 ## 🚀 Rotas
 
-```yml
-POST /cadastro
-    - Rota para cadastrar um novo usuário
-    - headers: {}
-    - body: {
-        "nome": "Lorem ipsum",
-        "email": "lorem@gmail.com",
-        "senha": "loremipsum"
-    }
-```
-    
-```yml 
-POST /login
-    - Rota para fazer login
-    - headers: {}
-    - body: {
-    "email": "lorem@gmail.com",
-    "senha": "loremipsum"
-    }
-```
-    
-```yml 
-POST /card/create
-  -Rota para cirar um cartão
-  - header: {'x-api-key': '$somekey'}
-  - body: { 
-      type: 'groceries' | 'restaurants' | 'transport' | 'education' | 'health',
-      cpf: '$00011122233'
-    }
-  - status: 201
-  - response data: 
-```
+### [Authentication](#authentication) _`/auth`_
+- [Register](#---register)
+- [Login](#---login)
 
-```yml
-``` 
+### [Credentials](#credentials) _`/credentials`_
+- [Create a credential](#---create-a-credential)
+- [Search all credentials](#---search-all-credentials)
+- [Search a credential](#---search-a-credential)
+- [Delete a credential](#---delete-a-credential)
 
-```yml
-```
- 
-```yml
-```
+
+### [Secure notes](#secure-notes) _`/secure-note`_
+- [Create a secure note](#---create-a-secure-note)
+- [Search all secure notes](#---search-all-secure-notes)
+- [Search a secure note](#---search-a-secure-note)
+- [Delete a secure note](#---delete-a-secure-note)
+
+
+### [Cards](#cards) _`/card`_
+- [Create a card](#---create-a-card)
+- [Search all cards](#---search-all-cards)
+- [Search a card](#---search-a-card)
+- [Delete a card](#---delete-a-card)
+
+
+### [Wifis](#wifis) _`/wi-fi`_
+- [Create a wi-fi](#---create-a-wifi)
+- [Search all wi-fi's](#---search-all-wi-fis)
+- [Search a wi-fi](#---search-a-wi-fi)
+- [Delete a wi-fi](#---delete-a-wi-fi)
+
 
 ***
 
@@ -75,19 +67,21 @@ POST /card/create
 
 Para rodar este projeto, certifique-se que você tem a ultima versão estável do [Node.js](https://nodejs.org/en/download/) e [npm](https://www.npmjs.com/) rodando localmente.
 
-Primeiro, faça o clone desse repositório na sua maquina:
+```bash
+# Install all dependencies
+$ git clone https://github.com/joltzz/DrivenPass-API
 
-```
-git clone https://github.com/joltzz/DrivenPass-API.git
-```
+$ cd DrivenPass-API
 
-Depois, dentro da pasta, rode o seguinte comando para instalar as dependencias.
+$ npm install
 
-```
-npm install
-```
+# Perform database migration with prism
+$ npx prisma migrate dev
 
-Finalizado o processo, é só inicializar o servidor
+# Start the server
+$ npm start
 ```
-npm run dev
+### You can still preview the data in the database easily using the command:
+```bash
+$ npx prisma studio
 ```
