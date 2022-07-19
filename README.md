@@ -63,27 +63,6 @@
 
 ***
 
-## 🏁 Rodando a aplicação
-
-Para rodar este projeto, certifique-se de importar o código e colocar na sua máquina com os seguintes comandos: 
-
-```bash
-# Install all dependencies
-$ git clone https://github.com/joltzz/DrivenPass-API
-
-$ cd DrivenPass-API
-
-$ npm install
-
-# Perform database migration with prism
-$ npx prisma migrate dev
-
-# Start the server
-$ npm start
-```
-
-***
-
 ## ✅ Autenticação
 ### &nbsp; ‣ &nbsp; Register
 #### &nbsp; &nbsp; POST _`/sign-up`_
@@ -105,4 +84,25 @@ $ npm start
   "email": "email@gmail.com",
   "password": "1234"
 }
+```
+
+***
+
+## 🏁 Rodando a aplicação
+
+Para rodar este projeto, certifique-se de importar o código e colocar na sua máquina com os seguintes comandos: 
+
+```bash
+# Install all dependencies
+$ git clone https://github.com/joltzz/DrivenPass-API
+
+$ cd DrivenPass-API
+
+$ npm install
+
+# Perform database migration with prism
+$ npx prisma migrate dev
+
+# Start the server
+$ npm start
 ```
