@@ -1,33 +1,59 @@
 import { Request, Response } from "express";
-import { CardSchema } from "../schemas/cardSchema.js";
-import * as cardsServer from "../services/cardsServer.js";
 
-export async function create(req: Request, res: Response) {
-  const partialCardData: CardSchema = req.body;
-  const { userId } = res.locals;
+import * as utils from "../utils/utils.js" 
+import * as servicesCard from '../services/cardsServices.js'
+import {cardsData} from "../repositories/cardsRepositories.js"
 
-  await cardsServer.create({ ...partialCardData, userId });
+async function insertNewCard(req: Request, res: Response){
+    let {number, nameCard, cvc, expirationDate, password, isVirtual, type, title}: cardsData = req.body
+    const token: string = req.headers.authorization?.replace("Bearer", "").trim()
+    
+    const userId = await utils.validatetionAndSendUserIfTokenCorrect(token)
+    const allCards = await servicesCard.getAllCards(userId)
+    await servicesCard.verifyTitleCardIsUnique(title, allCards)
+    password = utils.encryptPassword(password)    
+    cvc = utils.encryptPassword(cvc)
+    await servicesCard.insertNewCard({number, nameCard, cvc, expirationDate, password, isVirtual, type, title, userId})
 
-  res.sendStatus(201);
+    res.status(201).send("Card data register sucessfull")
 }
 
-export async function get(req: Request, res: Response) {
-  const { userId } = res.locals;
-  const queryCardId = req.query.id as number | undefined;
+async function getAllCards(req: Request, res: Response){
+    const token: string = req.headers.authorization?.replace("Bearer", "").trim()
 
-  const cards = await cardsServer.get(userId, queryCardId);
+    const userId = await utils.validatetionAndSendUserIfTokenCorrect(token)
+    let allCard = await servicesCard.getAllCards(userId)
+    allCard = await servicesCard.decryptAllPasswordCvc(allCard)
 
-  res.send(cards);
+    res.status(200).send(allCard)
 }
 
-export async function remove(req: Request, res: Response) {
-  const { userId } = res.locals;
-  const cardId = parseInt(req.params.id);
+async function getAnCard(req: Request, res: Response){
+    const token: string = req.headers.authorization?.replace("Bearer", "").trim()
+    const cardId: number =  parseInt(req.params.id)
+    
+    const userId: number = await utils.validatetionAndSendUserIfTokenCorrect(token)
+    let card = await servicesCard.getCardAndVerifyMaster(cardId, userId)
+    card.password = utils.decryptPassword(card.password)
+    card.cvc = utils.decryptPassword(card.cvc)
 
-  if (isNaN(cardId)) {
-    throw "Invalid Id";
-  }
+    res.status(200).send(card)
+}
 
-  await cardsServer.remove(userId, cardId);
-  res.sendStatus(204);
+async function deleteAnCard(req: Request, res: Response){
+    const token: string = req.headers.authorization?.replace("Bearer", "").trim()
+    const cardId: number =  parseInt(req.params.id)
+    
+    const userId: number = await utils.validatetionAndSendUserIfTokenCorrect(token)
+    await servicesCard.getCardAndVerifyMaster(cardId, userId)
+    await servicesCard.deleteCard(cardId)
+
+    res.status(204).send("deleted")
+}
+
+export {
+    insertNewCard,
+    getAllCards,
+    getAnCard,
+    deleteAnCard
 }

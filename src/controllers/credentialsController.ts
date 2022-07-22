@@ -1,33 +1,55 @@
 import { Request, Response } from "express";
-import { CredentialSchema } from "../schemas/credentialSchema.js";
-import * as credentialsServer from "../services/credentialsServer.js";
 
-export async function create(req: Request, res: Response) {
-  const partialCredentialData: CredentialSchema = req.body;
-  const { userId } = res.locals;
-  
-  await credentialsServer.create({ ...partialCredentialData, userId });
+import * as utils from "../utils/utils.js"
+import * as credentialsServices from "../services/credentialsServices.js"
 
-  res.sendStatus(201);
+async function insertNewCredential(req: Request, res: Response){
+    let {url, userName, password, title}: {url: string, userName: string, password: string, title: string} = req.body
+    const token: string = req.headers.authorization?.replace("Bearer", "").trim()
+    
+    const userId = await utils.validatetionAndSendUserIfTokenCorrect(token)
+    password = utils.encryptPassword(password)
+    await credentialsServices.verifyTitleIsUnique(userId, title)
+    await credentialsServices.insertAnNewCredential({url, userName, password, title, userId})
+    
+    res.status(201).send("Data register with sucessfull on credentials")
 }
 
-export async function get(req: Request, res: Response) {
-  const { userId } = res.locals;
-  const queryCredentialId = req.query.id as number | undefined;
+async function getCredential(req: Request, res: Response){
+    const credentialId: number =  parseInt(req.params.id)
+    const token: string = req.headers.authorization?.replace("Bearer", "").trim()
 
-  const credentials = await credentialsServer.get(userId, queryCredentialId);
+    const userId = await utils.validatetionAndSendUserIfTokenCorrect(token)
+    let credential = await credentialsServices.getCredentialAndVerifyMaster(credentialId, userId)
+    credential.password = utils.decryptPassword(credential.password)
 
-  res.send(credentials);
+    res.status(200).send(credential)
 }
 
-export async function remove(req: Request, res: Response) {
-  const { userId } = res.locals;
-  const credentialId = parseInt(req.params.id);
+async function getAllCredentials(req: Request, res: Response){
+    const token: string = req.headers.authorization?.replace("Bearer", "").trim()
 
-  if (isNaN(credentialId)) {
-    throw "Invalid Id";
-  }
+    const userId = await utils.validatetionAndSendUserIfTokenCorrect(token)
+    let allCredentials = await credentialsServices.getAllCredentialsPerUser(userId)
+    allCredentials = await utils.decryptAllPassword(allCredentials)
 
-  await credentialsServer.remove(userId, credentialId);
-  res.sendStatus(204);
+    res.status(200).send(allCredentials)
+}
+
+async function deleteCredential(req: Request, res: Response){
+    const token: string = req.headers.authorization?.replace("Bearer", "").trim()
+    const credentialId: number =  parseInt(req.params.id)
+    
+    const userId: number = await utils.validatetionAndSendUserIfTokenCorrect(token)
+    await credentialsServices.getCredentialAndVerifyMaster(credentialId, userId)
+    await credentialsServices.deleteCredential(credentialId)
+
+    res.status(204).send("deleted")
+}
+
+export {
+    insertNewCredential,
+    getCredential,
+    getAllCredentials,
+    deleteCredential
 }

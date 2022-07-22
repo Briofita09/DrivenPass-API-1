@@ -1,10 +1,10 @@
-import { Request, Response } from "express";
+import app from "./index.js"
+import dotenv from "dotenv"
 
-import AppLog from "./events/AppLog.js";
-import app from "./app.js";
-import "./config/setup.js";
+dotenv.config()
 
-const PORT = process.env.PORT || 5000;
+const PORT = +process.env.PORT || 4000
 
-app.get("/", async (_req: Request, res: Response) => res.send("Online"));
-app.listen(PORT, () => AppLog("Server", `Server running on port ${PORT}`));
+app.listen(PORT,()=>{
+    console.log(`Server up on port ${PORT}`)
+})
