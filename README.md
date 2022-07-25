@@ -16,7 +16,7 @@
 
 ***
 
-## 💻	 Tecnologias e Conceitos
+## 💻	 Tecnologias 
 
 - PostgreSQL
 - Prisma
